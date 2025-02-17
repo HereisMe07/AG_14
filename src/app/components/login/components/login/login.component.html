@@ -1,0 +1,86 @@
+<div class="content">
+    <div class="right-side">
+        <img src="/assets/images/background.svg" class="bg-right-side">
+        <div class="box-content">
+            <div class="header">
+                <div class="logo">
+                    <img src="/assets/images/Logo_NSSF-192.webp" alt="" srcset="">
+                </div>
+                <div class="app-name">
+                    <h1>{{ 'project.nssf' | translate }}</h1>
+                    <p>{{ 'project.sub_nssf' | translate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="left-side">
+        <div class="box-content">
+            <div class="header">
+                <h1>{{ 'project.title' | translate }}</h1>
+                <p>{{ 'project.welcome' | translate }}</p>
+            </div>
+            <div class="box-login">
+                <form *ngIf="!IS_ENABLE_OAUTH" class="mt-0" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                    <div class="row-login text-left">
+                        <div class="form-group-login col-md-12 pl px-0">
+                            <label class="label-control">{{ 'user.username' | translate }}</label>
+                            <div class="m-form form-group mb-0">
+                                <input type="text" class="form-control" [placeholder]="'user.username' | translate"
+                                       formControlName="username" autocomplete="off" required>
+                                <mat-icon class="icon-prefix m-0 custom-icon" svgIcon="mail"></mat-icon>
+                            </div>
+                            <div class="spacer">
+                                <mat-error
+                                    *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.hasError('required')">
+                                    {{ 'login.required_username' | translate }}
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-login text-left">
+                        <div class="form-group-login col-md-12 pl px-0">
+                            <label class="label-control">{{ 'login.password' | translate }}</label>
+                            <div class="m-form form-group mb-0">
+                                <input type="text" class="form-control"
+                                       [placeholder]="'login.password' | translate"
+                                       [type]="hide ? 'password' : 'text'"
+                                       formControlName="password"
+                                       autocomplete="new-password"
+                                       required>
+                                <mat-icon class="icon-prefix m-0 custom-icon" svgIcon="pass"></mat-icon>
+                                <button type="button" mat-icon-button class="icon-suffix mat-button-reset"
+                                        (click)="hide = !hide">
+                                    <mat-icon class="m-0 svg-icon">
+                                        {{ hide ? "visibility_off" : "visibility" }}
+                                    </mat-icon>
+                                </button>
+                            </div>
+                            <div class="spacer">
+                                <mat-error
+                                    *ngIf="loginForm.get('password')?.touched && !loginForm.get('password')?.valid">
+                                    {{ 'login.required_password' | translate }}
+                                </mat-error>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-login mb-0">
+                        <div class="col-md-12 px-0">
+                            <button type="submit" mat-flat-button class="btn-login">
+                                {{ 'button.login'| translate }}
+                                <mat-icon class="m-0 svg-icon" svgIcon="next"></mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                <div *ngIf="IS_ENABLE_OAUTH" class="row-login mb-0">
+                    <div class="col-md-12 px-0">
+                        <button type="submit" mat-flat-button class="btn-login oauth-btn-login" (click)="onLogin()">
+                            {{ 'button.login'| translate }}
+                            <mat-icon class="m-0 svg-icon" svgIcon="next"></mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
