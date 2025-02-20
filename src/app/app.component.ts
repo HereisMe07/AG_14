@@ -9,10 +9,6 @@ export class AppComponent{
 
   title = 'my-ag';
 
-  add() {
-    alert("Succes")
-  }
- 
   //array (a list)
   tasks = [
     "Visit Ann",
@@ -21,4 +17,9 @@ export class AppComponent{
     "Wash the dishes",
     "Shop for the party"
   ]
+  //Add input to array 
+  add(Newtask:string) {
+    this.tasks.push(Newtask)
+  }
+
 }
